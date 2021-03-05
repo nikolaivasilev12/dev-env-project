@@ -36,14 +36,17 @@
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
-
     <v-main>
+    <div v-for="char in characters.results" :key="char.id">
+        {{ char.name }}
+    </div>
       <HelloWorld/>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import axios from "axios"
 import HelloWorld from './components/HelloWorld';
 
 export default {
@@ -54,7 +57,17 @@ export default {
   },
 
   data: () => ({
-    //
+    characters: []
   }),
+  mounted() {
+    this.getChars()
+  },
+  methods: {
+    async getChars () {
+      await axios.get(`http://localhost:4000/characters`).then(res => {
+        this.characters = res.data.data
+      })
+    }
+  },
 };
 </script>
