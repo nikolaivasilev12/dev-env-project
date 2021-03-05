@@ -1,0 +1,18 @@
+{
+  "name": "development-environment",
+  "version": "1.0.0",
+  "description": "A cool book site",
+  "main": "main.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "away": "nodemon main.js",
+    "test": "away"
+  },
+  "author": "",
+  "license": "ISC"
+}
