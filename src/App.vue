@@ -40,6 +40,13 @@
     <div v-for="char in characters.results" :key="char.id">
         {{ char.name }}
     </div>
+    <v-pagination
+      v-model="page"
+      :length="Math.ceil(characters.total / 20)"
+      @input="getChars"
+      @next="getChars"
+      @previous="getChars"
+    ></v-pagination>
       <HelloWorld/>
     </v-main>
   </v-app>
@@ -57,14 +64,17 @@ export default {
   },
 
   data: () => ({
-    characters: []
+    characters: [],
+    page: 74
   }),
   mounted() {
     this.getChars()
   },
   methods: {
     async getChars () {
-      await axios.get(`http://localhost:4000/characters`).then(res => {
+      const page = this.page
+      await axios.post(`http://localhost:4000/characters`, {page} ).then(res => {
+        console.log(res)
         this.characters = res.data.data
       })
     }
