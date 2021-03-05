@@ -37,10 +37,58 @@
       </v-btn>
     </v-app-bar>
     <v-main>
-    <div v-for="char in characters.results" :key="char.id">
-        {{ char.name }}
+    <div>
+      <v-row>
+    <v-card v-for="char in characters.results" :key="char.id"
+    class="mx-auto mt-5"
+    max-width="344"
+  >
+
+    <v-img
+      :src="char.thumbnail.path + '.' + char.thumbnail.extension"
+      height="200px"
+    ></v-img>
+
+    <v-card-title>
+      {{ char.name }}
+    </v-card-title>
+
+    <v-card-subtitle>
+      1,000 miles of wonder
+    </v-card-subtitle>
+
+    <v-card-actions v-if="char.description">
+      <v-btn
+        color="orange lighten-2"
+        text
+      >
+        Explore
+      </v-btn>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        icon
+        @click="show = !show"
+      >
+        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+
+    <v-expand-transition v-if="char.description">
+      <div v-show="show">
+        <v-divider></v-divider>
+
+        <v-card-text>
+         {{ char.description }}
+        </v-card-text>
+      </div>
+    </v-expand-transition>
+  </v-card>
+  </v-row>
     </div>
     <v-pagination
+    class="mt-5"
       v-model="page"
       :length="Math.ceil(characters.total / 20)"
       @input="getChars"
@@ -65,7 +113,8 @@ export default {
 
   data: () => ({
     characters: [],
-    page: 74
+    page: 74,
+    show: false,
   }),
   mounted() {
     this.getChars()
