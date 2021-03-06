@@ -1,37 +1,62 @@
 <template>
   <div>
-    <h1>Single Character details</h1>
-    <ul v-for="character in character.results" :key="character.key">
-      <li>
-        {{ character.thumbnail.path + "." + character.thumbnail.extension }}
-      </li>
-      <li>
-        {{ character.name }}
-      </li>
-      <li>
-        {{ character.description }}
-      </li>
-      <br />
-      Series:
-      <li v-for="item in character.series.items" :key="item.key">
-        {{ item.name }}
-      </li>
-      <br />
-      Comics:
-      <li v-for="item in character.comics.items" :key="item.key">
-        {{ item.name }}
-      </li>
-      <br />
-      Stories:
-      <li v-for="item in character.stories.items" :key="item.key">
-        {{ item.name }}
-      </li>
-      <br />
-      URLS:
-      <li v-for="item in character.urls" :key="item.key">
-        {{ item.url }}
-      </li>
-    </ul>
+    <v-row>
+      <v-col cols="11">
+        <div class="loader">
+          <v-progress-circular
+            v-if="!character.results"
+            :size="70"
+            :width="7"
+            color="red"
+            indeterminate
+          ></v-progress-circular>
+        </div>
+        <div v-for="character in character.results" :key="character.key">
+          <v-col cols="12">
+            <v-row justify="center">
+              <v-img
+                max-height="500"
+                max-width="500"
+                :src="
+                  character.thumbnail.path + '.' + character.thumbnail.extension
+                "
+              ></v-img>
+            </v-row>
+            <h1 class="text-center mt-3">{{ character.name }}</h1>
+            <v-col cols="8" offset-md="2">
+              <p class="text-center">{{ character.description }}</p>
+            </v-col>
+          </v-col>
+          <v-row justify="center">
+            <div v-for="item in character.urls" :key="item.key">
+              <a class="pa-2" :href="item.url" target="_blank">
+                <v-btn color="red" text> External Link </v-btn></a
+              >
+            </div>
+          </v-row>
+          <v-row class="mt-5 pb-8" justify="center">
+            <v-col cols="3">
+              <h2>Series</h2>
+              <li v-for="item in character.series.items" :key="item.key">
+                {{ item.name }}
+              </li>
+            </v-col>
+            <v-col cols="3">
+              <h2>Comics</h2>
+              <li v-for="item in character.comics.items" :key="item.key">
+                {{ item.name }}
+              </li>
+            </v-col>
+            <v-col cols="3">
+              <h2>Stories</h2>
+              <li v-for="item in character.stories.items" :key="item.key">
+                {{ item.name }}
+              </li>
+            </v-col>
+          </v-row>
+        </div>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -58,3 +83,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+a {
+  text-decoration: none;
+}
+.loader {
+  position: absolute;
+  left: 45%;
+  top: 250px;
+}
+</style>
