@@ -3,7 +3,7 @@
     <v-app>
       <Navigation />
       <v-main>
-        <Home />
+    <router-view></router-view>
       </v-main>
       <VueFooter />
     </v-app>
@@ -12,7 +12,7 @@
 
 <script>
 import VueFooter from "./components/VueFooter.vue";
-import Home from "./views/Home.vue";
+
 import Navigation from "./components/Navigation.vue";
 
 export default {
@@ -20,7 +20,7 @@ export default {
 
   components: {
     VueFooter,
-    Home,
+
     Navigation,
   },
 };
