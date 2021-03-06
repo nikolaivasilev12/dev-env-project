@@ -67,9 +67,9 @@ export default {
   name: "Home",
   components: {},
   data: () => ({
+    searchChar: "",
     characters: [],
     page: 1,
-    searchChar: "",
   }),
   mounted() {
     this.getChars();

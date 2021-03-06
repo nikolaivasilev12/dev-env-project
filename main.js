@@ -21,8 +21,7 @@ app.post('/characters', async (req, res) => {
             params: {
                 offset: req.body.page * 20
             }
-        })
-        .then(res => {
+        }).then(res => {
             result = res.data
         }).catch(err => {
             console.log(err)
@@ -31,18 +30,18 @@ app.post('/characters', async (req, res) => {
 });
 
 
-
+/* NOT WORKING */
 /* Get Single Character */
 app.post('/character', async (req, res) => {
     let result = null;
-    const charId = req.body.id
+    const charId = req.body.charId
 
     await axios.get(`http://gateway.marvel.com/v1/public/characters/${charId}?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
     ).then(res => {
         result = res.data
-        }).catch(err => {
-            console.log(err)
-        })
+    }).catch(err => {
+        console.log(err)
+    })
     res.json(result);
 });
 
