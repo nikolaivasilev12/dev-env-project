@@ -88,9 +88,5 @@ export default {
 a {
   text-decoration: none;
 }
-.loader {
-  position: absolute;
-  left: 45%;
-  top: 250px;
-}
+
 </style>

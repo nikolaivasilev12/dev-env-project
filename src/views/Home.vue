@@ -15,6 +15,7 @@
         <v-row class="d-flex" justify="center">
           <div>
             <v-progress-circular
+            class="loader"
               v-if="!characters.results"
               :size="70"
               :width="7"
@@ -98,4 +99,5 @@ export default {
   text-transform: uppercase;
   font-size: 44px;
 }
+
 </style>

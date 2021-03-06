@@ -33,4 +33,9 @@ export default {
 .v-sheet.v-footer:not(.v-sheet--outlined){
     z-index: 999 !important;
 }
+.loader {
+  position: absolute;
+  left: 45%;
+  top: 250px;
+}
 </style>
