@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="11">
+      <v-col cols="10" offset-md="1">
         <div class="loader">
           <v-progress-circular
             v-if="!character.results"
@@ -15,11 +15,10 @@
           <v-col cols="12">
             <v-row justify="center">
               <v-img
+              class="mt-2"
                 max-height="500"
                 max-width="500"
-                :src="
-                  character.thumbnail.path + '.' + character.thumbnail.extension
-                "
+                :src="character.thumbnail.path + '.' + character.thumbnail.extension"
               ></v-img>
             </v-row>
             <h1 class="text-center mt-3">{{ character.name }}</h1>
@@ -30,12 +29,12 @@
           <v-row justify="center">
             <div v-for="item in character.urls" :key="item.key">
               <a class="pa-2" :href="item.url" target="_blank">
-                <v-btn color="red" text> External Link </v-btn></a
+                <v-btn color="red" text>{{ item.type }}</v-btn></a
               >
             </div>
           </v-row>
           <v-row class="mt-5 pb-8" justify="center">
-            <v-col cols="3">
+            <v-col cols="3" offset-md="1">
               <h2>Series</h2>
               <li v-for="item in character.series.items" :key="item.key">
                 {{ item.name }}
@@ -73,12 +72,10 @@ export default {
   methods: {
     async getCharacter() {
       const charId = this.$route.params.id;
-      await axios
-        .post(`http://localhost:4000/character`, { charId })
-        .then((res) => {
-          console.log(res);
-          this.character = res.data.data;
-        });
+      await axios.post(`http://localhost:4000/character`, { charId }).then((res) => {
+        console.log(res);
+        this.character = res.data.data;
+      });
     },
   },
 };
@@ -88,5 +85,4 @@ export default {
 a {
   text-decoration: none;
 }
-
 </style>
