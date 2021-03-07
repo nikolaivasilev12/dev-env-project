@@ -39,7 +39,7 @@
             <v-card-title>
               {{ comic.title }}
             </v-card-title>
-             <v-btn :to="{ path: '/comicsdetails/' + comic.id}" class="mt-5 mb-1" color="red" text>
+             <v-btn :to="{ path: '/comic/' + comic.id}" class="mt-5 mb-1" color="red" text>
                 About Comics
               </v-btn>
           </v-card>

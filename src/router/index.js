@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Characters from '../views/Characters.vue'
 import CharacterDetails from '../views/CharacterDetails.vue'
 import Comics from '../views/Comics.vue'
-import Characters from '../views/Characters.vue'
 import ComicsDetails from '../views/ComicsDetails.vue'
+import Series from '../views/Series.vue'
+import SerieDetails from '../views/SerieDetails.vue'
 
 Vue.use(VueRouter)
 
@@ -28,19 +30,29 @@ const routes = [
     component: CharacterDetails
   },
   {
-    path: '/comics',
-    name: 'Comics',
-    component: Comics
-  },
-  {
     path: '/characters',
     name: 'Characters',
     component: Characters
   },
   {
-    path: '/comicsdetails/:id',
+    path: '/comics',
+    name: 'Comics',
+    component: Comics
+  },
+  {
+    path: '/comic/:id',
     name: 'ComicsDetails',
     component: ComicsDetails
+  },
+  {
+    path: '/series',
+    name: 'Series',
+    component: Series
+  },
+  {
+    path: '/serie/:id',
+    name: 'SerieDetails',
+    component: SerieDetails
   },
 ]
 

@@ -76,6 +76,36 @@ app.post('/comic', async (req, res) => {
     res.json(result);
 });
 
+//SERIES
+//GET ALL Series
+app.post('/series', async (req, res) => {
+    var result = null;
+    await axios.get(`http://gateway.marvel.com/v1/public/series?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
+        {
+            params: {
+                offset: req.body.page * 20
+            }
+        }).then(res => {
+            result = res.data
+        }).catch(err => {
+            console.log(err)
+        })
+    res.json(result);
+});
+
+/* Get Single Serie details */
+app.post('/serie', async (req, res) => {
+    let result = null;
+    const SerieId = req.body.SerieId
+
+    await axios.get(`http://gateway.marvel.com/v1/public/series/${SerieId}?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
+    ).then(res => {
+        result = res.data
+    }).catch(err => {
+        console.log(err)
+    })
+    res.json(result);
+});
 
 
 

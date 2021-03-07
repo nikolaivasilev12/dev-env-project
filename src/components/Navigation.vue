@@ -5,13 +5,13 @@
       dark
       shrink-on-scroll
       prominent
-      src="https://picsum.photos/1920/1080?random"
-      fade-img-on-scroll
+      src="https://wallpaperaccess.com/full/14358.jpg"
     >
       <template v-slot:img="{ props }">
         <v-img
+          position="80% 18%"
           v-bind="props"
-          gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
+          gradient="to top right, rgba(000,000,000,.8), rgba(25,32,72,.7)"
         ></v-img>
       </template>
       <template v-slot:extension>
@@ -19,7 +19,7 @@
           <v-tab to="/">Home</v-tab>
           <v-tab to="/characters">Characters</v-tab>
           <v-tab to="/comics">Comics</v-tab>
-          <v-tab>Series</v-tab>
+          <v-tab to="/series">Series</v-tab>
           <v-tab>Stories</v-tab>
         </v-tabs>
       </template>
