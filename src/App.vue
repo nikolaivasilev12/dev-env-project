@@ -35,7 +35,7 @@ export default {
 }
 .loader {
   position: absolute;
-  left: 45%;
+  left: 48%;
   top: 250px;
 }
 </style>
