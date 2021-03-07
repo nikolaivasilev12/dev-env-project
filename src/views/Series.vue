@@ -3,10 +3,11 @@
     <div>
       <v-col cols="10" offset-md="1">
         <h1 class="text-center titletxt pb-7 mt-4">Series</h1>
-        <v-col cols="3" offset="9">
+        <v-col cols="2" offset="10">
           <v-text-field
             prepend-inner-icon="mdi-magnify"
-            label="Search for character.."
+            label="Search.."
+            dense
             v-model="searchChar"
             color="red"
             outlined

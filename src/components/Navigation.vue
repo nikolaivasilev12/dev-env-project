@@ -20,7 +20,7 @@
           <v-tab to="/characters">Characters</v-tab>
           <v-tab to="/comics">Comics</v-tab>
           <v-tab to="/series">Series</v-tab>
-          <v-tab>Stories</v-tab>
+          <v-tab to="/stories">Stories</v-tab>
         </v-tabs>
       </template>
     </v-app-bar>

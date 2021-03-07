@@ -76,6 +76,7 @@ app.post('/comic', async (req, res) => {
     res.json(result);
 });
 
+
 //SERIES
 //GET ALL Series
 app.post('/series', async (req, res) => {
@@ -107,6 +108,36 @@ app.post('/serie', async (req, res) => {
     res.json(result);
 });
 
+
+//SERIES
+//GET ALL Stories
+app.post('/stories', async (req, res) => {
+    var result = null;
+    await axios.get(`http://gateway.marvel.com/v1/public/stories?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
+        {
+            params: {
+                offset: req.body.page * 20
+            }
+        }).then(res => {
+            result = res.data
+        }).catch(err => {
+            console.log(err)
+        })
+    res.json(result);
+});
+/* Get Single Story details */
+app.post('/story', async (req, res) => {
+    let result = null;
+    const StoryId = req.body.StoryId
+
+    await axios.get(`http://gateway.marvel.com/v1/public/stories/${StoryId}?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
+    ).then(res => {
+        result = res.data
+    }).catch(err => {
+        console.log(err)
+    })
+    res.json(result);
+});
 
 
 const port = process.env.PORT || 4000;

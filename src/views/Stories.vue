@@ -2,12 +2,12 @@
   <div>
     <div>
       <v-col cols="10" offset-md="1">
-        <h1 class="text-center titletxt pb-7 mt-4">Comics</h1>
+        <h1 class="text-center titletxt pb-7 mt-4">Stories</h1>
         <v-col cols="2" offset="10">
           <v-text-field
+            dense
             prepend-inner-icon="mdi-magnify"
             label="Search.."
-            dense
             v-model="searchChar"
             color="red"
             outlined
@@ -16,8 +16,8 @@
         <v-row class="d-flex" justify="center">
           <div>
             <v-progress-circular
-            class="loader"
-              v-if="!comics.results"
+              class="loader"
+              v-if="!stories.results"
               :size="70"
               :width="7"
               color="red"
@@ -25,24 +25,29 @@
             ></v-progress-circular>
           </div>
           <v-card
-            v-for="comic in comics.results"
-            :key="comic.id"
+            v-for="story in stories.results"
+            :key="story.id"
             class="mx-auto mt-5 offset-2"
             max-width="300"
             min-width="300"
           >
-            <v-img
-              :src="comic.thumbnail.path + '.' + comic.thumbnail.extension"
+   <!--          <v-img
+              :src="story.thumbnail.path + '.' + story.thumbnail.extension"
               height="200px"
               contain
-            ></v-img>
+            ></v-img> -->
 
             <v-card-title>
-              {{ comic.title }}
+              {{ story.originalIssue.name }}
             </v-card-title>
-             <v-btn :to="{ path: '/comic/' + comic.id}" class="mt-5 mb-1" color="red" text>
-                About Comics
-              </v-btn>
+            <v-btn
+              :to="{ path: '/story/' + story.id }"
+              class="mt-5 mb-1"
+              color="red"
+              text
+            >
+              About story
+            </v-btn>
           </v-card>
         </v-row>
       </v-col>
@@ -50,13 +55,13 @@
     <v-row justify="center">
       <v-col cols="4">
         <v-pagination
-          v-if="comics.results"
+          v-if="stories.results"
           class="mt-10 pb-15"
           v-model="page"
-          :length="Math.ceil(comics.total / 20)"
-          @input="getComics"
-          @next="getComics"
-          @previous="getComics"
+          :length="Math.ceil(stories.total / 20)"
+          @input="getStories"
+          @next="getStories"
+          @previous="getStories"
         ></v-pagination>
       </v-col>
     </v-row>
@@ -70,21 +75,21 @@ export default {
   components: {},
   data: () => ({
     searchChar: "",
-    comics: [],
+    stories: [],
     page: 1,
   }),
   mounted() {
-    this.getComics();
+    this.getStories();
   },
   methods: {
-    async getComics() {
+    async getStories() {
       const page = this.page;
       await axios
-        .post(`http://localhost:4000/comics`, { page })
+        .post(`http://localhost:4000/stories`, { page })
         .then((res) => {
           this.scrollToTop();
           console.log(res);
-          this.comics = res.data.data;
+          this.stories = res.data.data;
         });
     },
     scrollToTop() {
@@ -100,5 +105,4 @@ export default {
   text-transform: uppercase;
   font-size: 44px;
 }
-
 </style>

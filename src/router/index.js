@@ -7,6 +7,8 @@ import Comics from '../views/Comics.vue'
 import ComicsDetails from '../views/ComicsDetails.vue'
 import Series from '../views/Series.vue'
 import SerieDetails from '../views/SerieDetails.vue'
+import Stories from '../views/Stories.vue'
+import StoryDetails from '../views/StoryDetails.vue'
 
 Vue.use(VueRouter)
 
@@ -53,6 +55,16 @@ const routes = [
     path: '/serie/:id',
     name: 'SerieDetails',
     component: SerieDetails
+  },
+  {
+    path: '/stories',
+    name: 'Stories',
+    component: Stories
+  },
+  {
+    path: '/story/:id',
+    name: 'StoryDetails',
+    component: StoryDetails
   },
 ]
 
