@@ -2,7 +2,7 @@
   <div>
     <v-app>
       <Navigation />
-      <v-main>
+      <v-main class="bg">
     <router-view></router-view>
       </v-main>
       <VueFooter />
@@ -37,5 +37,8 @@ export default {
   position: absolute;
   left: 48%;
   top: 250px;
+}
+.bg{
+  background-color: #1E1E1E;
 }
 </style>

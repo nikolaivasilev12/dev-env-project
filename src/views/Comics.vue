@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg">
     <div>
       <v-col cols="10" offset-md="1">
         <v-col cols="2" offset="10">
@@ -7,6 +7,7 @@
             prepend-inner-icon="mdi-magnify"
             label="Search.."
             dense
+            dark
             v-model="searchChar"
             color="red"
             outlined
@@ -16,7 +17,7 @@
         <v-row class="d-flex" justify="center">
           <div>
             <v-progress-circular
-            class="loader"
+              class="loader"
               v-if="!comics.results"
               :size="70"
               :width="7"
@@ -28,8 +29,12 @@
             v-for="comic in comics.results"
             :key="comic.id"
             class="mx-auto mt-5 offset-2"
-            max-width="300"
-            min-width="300"
+            contain
+            min-height="300"
+            max-width="270"
+            min-width="270"
+            outlined
+            dark
           >
             <v-img
               :src="comic.thumbnail.path + '.' + comic.thumbnail.extension"
@@ -37,12 +42,17 @@
               contain
             ></v-img>
 
-            <v-card-title>
+            <v-card-title class="text-center">
               {{ comic.title }}
             </v-card-title>
-             <v-btn :to="{ path: '/comic/' + comic.id}" class="mt-5 mb-1" color="red" text>
-                About Comics
-              </v-btn>
+            <v-btn
+              :to="{ path: '/comic/' + comic.id }"
+              class="mt-5 mb-1"
+              color="red"
+              text
+            >
+              About Comics
+            </v-btn>
           </v-card>
         </v-row>
       </v-col>
@@ -79,13 +89,11 @@ export default {
   methods: {
     async getComics() {
       const page = this.page;
-      await axios
-        .post(`http://localhost:4000/comics`, { page })
-        .then((res) => {
-          this.scrollToTop();
-          console.log(res);
-          this.comics = res.data.data;
-        });
+      await axios.post(`http://localhost:4000/comics`, { page }).then((res) => {
+        this.scrollToTop();
+        console.log(res);
+        this.comics = res.data.data;
+      });
     },
     scrollToTop() {
       window.scrollTo(0, 0);
@@ -99,8 +107,7 @@ export default {
   color: red;
   text-transform: uppercase;
   font-size: 44px;
-    letter-spacing: 5px;
-  font-family: 'Bangers', cursive !important;
+  letter-spacing: 5px;
+  font-family: "Bangers", cursive !important;
 }
-
 </style>

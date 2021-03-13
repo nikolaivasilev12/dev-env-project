@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg">
     <div>
       <v-col cols="10" offset-md="1">
         <v-col cols="2" offset="10">
@@ -10,6 +10,7 @@
             v-model="searchChar"
             color="red"
             outlined
+            dark
           ></v-text-field>
         </v-col>
         <h1 class="text-center titletxt pb-5">Stories</h1>
@@ -28,8 +29,10 @@
             v-for="story in stories.results"
             :key="story.id"
             class="mx-auto mt-5 offset-2"
-            max-width="300"
-            min-width="300"
+            max-width="270"
+            min-width="270"
+            outlined
+            dark
           >
    <!--          <v-img
               :src="story.thumbnail.path + '.' + story.thumbnail.extension"

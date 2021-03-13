@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="bg">
     <div>
       <v-col cols="10" offset-md="1">
         <v-col cols="2" offset="10">
           <v-text-field
             prepend-inner-icon="mdi-magnify"
+            dark
             dense
             label="Search.."
             v-model="searchChar"
@@ -28,13 +29,18 @@
             v-for="char in characters.results"
             :key="char.id"
             class="mx-auto mt-5 offset-2"
-            max-width="300"
-            min-width="300"
+            contain
+            min-height="300"
+            max-width="270"
+            min-width="270"
+            outlined
+            dark
           >
             <v-img
               :src="char.thumbnail.path + '.' + char.thumbnail.extension"
-              height="200px"
-              contain
+              max-height="270px"
+              min-height="270px"
+              position="1% 0%"
             ></v-img>
 
             <v-card-title>
@@ -105,6 +111,6 @@ export default {
   text-transform: uppercase;
   font-size: 44px;
   letter-spacing: 5px;
-  font-family: 'Bangers', cursive !important;
+  font-family: "Bangers", cursive !important;
 }
 </style>
