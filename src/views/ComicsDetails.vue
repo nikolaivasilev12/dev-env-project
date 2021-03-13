@@ -23,9 +23,9 @@
             </v-col>
             <v-col cols="6">
               <h1 class="text-center mt-3">{{ comi.title }}</h1>
-              <h3 class="text-center">
+              <h2 class="text-center">
                 Price: {{ comi.prices[0].price + "$" }}
-              </h3>
+              </h2>
               <v-col cols="12" >
                 <div
                   class="d-inline-flex"
@@ -127,5 +127,8 @@ a {
 }
 .pbold {
   font-weight: bold;
+}
+h1,p, h2 {
+  color: white;
 }
 </style>

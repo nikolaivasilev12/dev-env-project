@@ -112,4 +112,7 @@ a {
 .pbold {
   font-weight: bold;
 }
+h1,p {
+  color: white;
+}
 </style>
