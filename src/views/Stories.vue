@@ -2,7 +2,6 @@
   <div>
     <div>
       <v-col cols="10" offset-md="1">
-        <h1 class="text-center titletxt pb-7 mt-4">Stories</h1>
         <v-col cols="2" offset="10">
           <v-text-field
             dense
@@ -13,6 +12,7 @@
             outlined
           ></v-text-field>
         </v-col>
+        <h1 class="text-center titletxt pb-5">Stories</h1>
         <v-row class="d-flex" justify="center">
           <div>
             <v-progress-circular

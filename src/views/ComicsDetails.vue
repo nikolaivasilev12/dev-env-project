@@ -12,78 +12,82 @@
           ></v-progress-circular>
         </div>
         <div v-for="comi in comic.results" :key="comi.key">
-          <v-col cols="12">
-            <v-row justify="center">
+          <v-row>
+            <v-col cols="7">
               <v-img
-                class="mt-2"
-                max-height="500"
-                max-width="500"
+                class="mt-2 mb-2"
                 :src="comi.thumbnail.path + '.' + comi.thumbnail.extension"
               ></v-img>
-            </v-row>
-            <h1 class="text-center mt-3">{{ comi.title }}</h1>
-            <h3 class="text-center">Price: {{ comi.prices[0].price + "$" }}</h3>
-            <v-col cols="10" offset-md="1">
-              <div
-                class="d-inline-flex"
-                v-for="char in comi.characters.items"
-                :key="char.id"
-              >
-                <v-chip class="ml-1 my-1" color="" label>
-                  <v-icon left> mdi-label </v-icon>
-                  {{ char.name }}
-                </v-chip>
-              </div>
-              <p class="text-center mt-3">{{ comi.description }}</p>
             </v-col>
-          </v-col>
-          <v-row justify="center">
-            <div v-for="url in comi.urls" :key="url.key">
-              <a class="pa-2" :href="url.url" target="_blank">
-                <v-btn color="red" text>{{ url.type }}</v-btn></a
-              >
-            </div>
-          </v-row>
-          <v-row class="mt-5 pb-8" justify="center">
-            <v-col cols="3" offset-md="1">
-              <v-expansion-panels>
-                <v-expansion-panel>
-                  <v-expansion-panel-header>
-                    <h2>Series</h2>
-                  </v-expansion-panel-header>
-                  <v-expansion-panel-content>
-                    {{ comi.series.name }}
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-              </v-expansion-panels>
-            </v-col>
-            <v-col cols="3">
-              <v-expansion-panels>
-                <v-expansion-panel>
-                  <v-expansion-panel-header>
-                    <h2>Creators</h2>
-                  </v-expansion-panel-header>
-                  <v-expansion-panel-content>
-                    <li v-for="item in comi.creators.items" :key="item.key">
-                      {{ item.name + " - " + item.role }}
-                    </li>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-              </v-expansion-panels>
-            </v-col>
-            <v-col cols="3">
-              <v-expansion-panels>
-                <v-expansion-panel>
-                  <v-expansion-panel-header>
-                    <h2>Stories</h2>
-                  </v-expansion-panel-header>
-                  <v-expansion-panel-content>
-                    <li v-for="item in comi.stories.items" :key="item.key">
-                      {{ item.name }}
-                    </li>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-              </v-expansion-panels>
+            <v-col cols="5">
+              <h1 class="text-center mt-3">{{ comi.title }}</h1>
+              <h3 class="text-center">
+                Price: {{ comi.prices[0].price + "$" }}
+              </h3>
+
+              <v-col cols="12" >
+                <div
+                  class="d-inline-flex"
+                  v-for="char in comi.characters.items"
+                  :key="char.id"
+                >
+                  <v-chip class="ml-1 my-1" color="" label>
+                    <v-icon left> mdi-label </v-icon>
+                    {{ char.name }}
+                  </v-chip>
+                </div>
+                <p class="text-center mt-3">{{ comi.description }}</p>
+              </v-col>
+              <v-row justify="center">
+                <div v-for="url in comi.urls" :key="url.key">
+                  <a class="pa-2" :href="url.url" target="_blank">
+                    <v-btn color="red" text>{{ url.type }}</v-btn></a
+                  >
+                </div>
+              </v-row>
+
+              <v-row class="mt-5 pb-8" justify="center">
+                <v-col cols="4">
+                  <v-expansion-panels>
+                    <v-expansion-panel>
+                      <v-expansion-panel-header>
+                        <h3>Series</h3>
+                      </v-expansion-panel-header>
+                      <v-expansion-panel-content>
+                        {{ comi.series.name }}
+                      </v-expansion-panel-content>
+                    </v-expansion-panel>
+                  </v-expansion-panels>
+                </v-col>
+                <v-col cols="4">
+                  <v-expansion-panels>
+                    <v-expansion-panel>
+                      <v-expansion-panel-header>
+                        <h3>Creators</h3>
+                      </v-expansion-panel-header>
+                      <v-expansion-panel-content>
+                        <li v-for="item in comi.creators.items" :key="item.key">
+                          {{ item.name + " - " + item.role }}
+                        </li>
+                      </v-expansion-panel-content>
+                    </v-expansion-panel>
+                  </v-expansion-panels>
+                </v-col>
+                <v-col cols="4">
+                  <v-expansion-panels>
+                    <v-expansion-panel>
+                      <v-expansion-panel-header>
+                        <h3>Stories</h3>
+                      </v-expansion-panel-header>
+                      <v-expansion-panel-content>
+                        <li v-for="item in comi.stories.items" :key="item.key">
+                          {{ item.name }}
+                        </li>
+                      </v-expansion-panel-content>
+                    </v-expansion-panel>
+                  </v-expansion-panels>
+                </v-col>
+              </v-row>
             </v-col>
           </v-row>
         </div>

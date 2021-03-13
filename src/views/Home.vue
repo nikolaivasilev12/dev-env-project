@@ -74,8 +74,10 @@ h2 {
 }
 h2 span {
   color: #ed1d24;
-  font: 44px/45px Helvetica, Sans-Serif;
-  letter-spacing: -1px;
+  font: 40px/45px Helvetica, Sans-Serif;
+   font-family: 'Bangers', cursive !important;
+  text-transform: uppercase;  ;
+  letter-spacing: 4px;
   background: rgb(0, 0, 0); /* fallback color */
   background: rgba(0, 0, 0, 0.7);
   padding: 10px 20px;

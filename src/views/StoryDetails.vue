@@ -36,7 +36,7 @@
               <v-expansion-panels>
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    <h2>Creators</h2>
+                    <h3>Creators</h3>
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <li v-for="item in story.creators.items" :key="item.key">
@@ -50,7 +50,7 @@
               <v-expansion-panels>
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    <h2>Comics</h2>
+                    <h3>Comics</h3>
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <li v-for="item in story.comics.items" :key="item.key">
@@ -64,7 +64,7 @@
               <v-expansion-panels>
                 <v-expansion-panel>
                   <v-expansion-panel-header>
-                    <h2>Series</h2>
+                    <h3>Series</h3>
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <li v-for="item in story.series.items" :key="item.key">
@@ -109,7 +109,7 @@ export default {
 a {
   text-decoration: none;
 }
-.pbold{
+.pbold {
   font-weight: bold;
 }
 </style>
