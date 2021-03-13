@@ -139,6 +139,25 @@ app.post('/story', async (req, res) => {
     res.json(result);
 });
 
+//SEARCH
+//Search character
+app.post('/char', async (req, res) => {
+    var result = null;
+    const searchChar = req.body.searchChar
+    await axios.get(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${searchChar}&ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
+    {
+        params: {
+            offset: req.body.page * 20
+        }
+    }).then(res => {
+            result = res.data
+        }).catch(err => {
+            console.log(err)
+        })
+    res.json(result);
+});
+
+
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

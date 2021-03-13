@@ -128,7 +128,8 @@ export default {
 a {
   text-decoration: none;
 }
-h1,p {
+h1,
+p {
   color: white;
 }
 </style>

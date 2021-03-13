@@ -12,20 +12,75 @@
             color="red"
             outlined
           ></v-text-field>
+          <v-btn dark @click="searchCharacter(searchChar)">Search</v-btn>
         </v-col>
         <h1 class="text-center titletxt pb-5">Characters</h1>
         <v-row class="d-flex" justify="center">
-          <div>
-            <v-progress-circular
-              class="loader"
-              v-if="!characters.results"
-              :size="70"
-              :width="7"
-              color="red"
-              indeterminate
-            ></v-progress-circular>
-          </div>
+          
+          <!-- Loader -->
+          
+          <v-progress-circular
+            class="loader"
+            v-if="!characters.results"
+            :size="70"
+            :width="7"
+            color="red"
+            indeterminate
+          ></v-progress-circular>
+
+          <!-- Search results -->
           <v-card
+            :to="{ path: '/character/' + searchChar.id }"
+            v-for="searchChar in searchResults.results"
+            :key="searchChar.id"
+            class="mx-auto mt-5 offset-2"
+            contain
+            min-height="300"
+            max-width="270"
+            min-width="270"
+            outlined
+            dark
+          >
+            <v-img
+              :src="
+                searchChar.thumbnail.path + '.' + searchChar.thumbnail.extension
+              "
+              max-height="270px"
+              min-height="270px"
+              position="1% 0%"
+            ></v-img>
+            <v-card-title>
+              {{ searchChar.name }}
+            </v-card-title>
+            <v-btn
+              :to="{ path: '/character/' + searchChar.id }"
+              class="mt-5 mb-1"
+              color="red"
+              text
+            >
+              About character
+            </v-btn>
+          </v-card>
+          <v-col cols="12"></v-col>
+          <v-col col="12">
+            <v-row justify="center">
+                <v-col cols="4">
+                  <v-pagination
+                    v-if="searchResults.results"
+                    class="mt-10 pb-15"
+                    v-model="page"
+                    :length="Math.ceil(searchResults.total / 20)"
+                    @input="searchCharacter"
+                    @next="searchCharacter"
+                    @previous="searchCharacter"
+                  ></v-pagination>
+                </v-col>
+              </v-row>
+      </v-col>
+          <!-- ALL RESULTS -->
+        <v-col cols="12"></v-col>
+          <v-card
+            v-show="!searchChar"
             :to="{ path: '/character/' + char.id }"
             v-for="char in characters.results"
             :key="char.id"
@@ -62,6 +117,7 @@
     <v-row justify="center">
       <v-col cols="4">
         <v-pagination
+         v-show="!searchChar"
           v-if="characters.results"
           class="mt-10 pb-15"
           v-model="page"
@@ -83,6 +139,7 @@ export default {
   data: () => ({
     searchChar: "",
     characters: [],
+    searchResults: [],
     page: 1,
   }),
   mounted() {
@@ -97,6 +154,16 @@ export default {
           this.scrollToTop();
           console.log(res);
           this.characters = res.data.data;
+        });
+    },
+    async searchCharacter() {
+      const searchChar = this.searchChar;
+      const page = this.page;
+      await axios
+        .post(`http://localhost:4000/char`, { searchChar }, { page })
+        .then((res) => {
+          console.log(res);
+          this.searchResults = res.data.data;
         });
     },
     scrollToTop() {
