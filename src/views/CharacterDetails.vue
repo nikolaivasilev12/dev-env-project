@@ -51,7 +51,7 @@
                           v-for="item in character.series.items"
                           :key="item.key"
                         >
-                          <p>{{ item.name }}</p>
+                          {{ item.name }}
                         </li>
                       </v-expansion-panel-content>
                     </v-expansion-panel>
