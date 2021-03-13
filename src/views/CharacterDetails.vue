@@ -40,7 +40,7 @@
                 </div>
               </v-row>
               <v-row class="mt-5 pb-8" justify="center">
-                <v-col cols="4">
+                <v-col cols="12">
                   <v-expansion-panels>
                     <v-expansion-panel>
                       <v-expansion-panel-header>
@@ -57,7 +57,7 @@
                     </v-expansion-panel>
                   </v-expansion-panels>
                 </v-col>
-                <v-col cols="4">
+                <v-col cols="12">
                   <v-expansion-panels>
                     <v-expansion-panel>
                       <v-expansion-panel-header>
@@ -74,7 +74,7 @@
                     </v-expansion-panel>
                   </v-expansion-panels>
                 </v-col>
-                <v-col cols="4">
+                <v-col cols="12">
                   <v-expansion-panels>
                     <v-expansion-panel>
                       <v-expansion-panel-header>
