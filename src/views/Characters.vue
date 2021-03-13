@@ -26,6 +26,7 @@
             ></v-progress-circular>
           </div>
           <v-card
+            :to="{ path: '/character/' + char.id }"
             v-for="char in characters.results"
             :key="char.id"
             class="mx-auto mt-5 offset-2"
