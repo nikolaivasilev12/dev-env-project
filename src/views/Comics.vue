@@ -99,6 +99,8 @@ export default {
   color: red;
   text-transform: uppercase;
   font-size: 44px;
+    letter-spacing: 5px;
+  font-family: 'Bangers', cursive !important;
 }
 
 </style>
