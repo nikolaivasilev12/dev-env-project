@@ -13,13 +13,15 @@
         </div>
         <div v-for="serie in serie.results" :key="serie.key">
           <v-row align="center">
-            <v-col cols="7">
+            <v-col cols="6">
               <v-img
                 class="mt-2 mb-2"
+                contain
+                max-height="800px"
                 :src="serie.thumbnail.path + '.' + serie.thumbnail.extension"
               ></v-img>
             </v-col>
-            <v-col cols="5">
+            <v-col cols="6">
               <h1 class="text-center mt-3">{{ serie.title }}</h1>
               <v-col cols="12">
                 <div

@@ -13,7 +13,7 @@
         </div>
         <div v-for="comi in comic.results" :key="comi.key">
           <v-row align="center">
-            <v-col cols="7">
+            <v-col cols="6">
               <v-img
                 class="mt-2 mb-2"
                 contain
@@ -21,7 +21,7 @@
                 :src="comi.thumbnail.path + '.' + comi.thumbnail.extension"
               ></v-img>
             </v-col>
-            <v-col cols="5">
+            <v-col cols="6">
               <h1 class="text-center mt-3">{{ comi.title }}</h1>
               <h3 class="text-center">
                 Price: {{ comi.prices[0].price + "$" }}
