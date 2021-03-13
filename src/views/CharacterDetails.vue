@@ -15,15 +15,20 @@
           <v-col cols="12">
             <v-row justify="center">
               <v-img
-              class="mt-2"
+                class="mt-2"
                 max-height="500"
                 max-width="500"
-                :src="character.thumbnail.path + '.' + character.thumbnail.extension"
+                :src="
+                  character.thumbnail.path + '.' + character.thumbnail.extension
+                "
               ></v-img>
             </v-row>
             <h1 class="text-center mt-3">{{ character.name }}</h1>
-            <v-col cols="8" offset-md="2">
+            <v-col v-if="character.description" cols="8" offset-md="2">
               <p class="text-center">{{ character.description }}</p>
+            </v-col>
+            <v-col v-else cols="8" offset-md="2">
+              <p class="text-center">Character Description not Available.</p>
             </v-col>
           </v-col>
           <v-row justify="center">
@@ -35,22 +40,46 @@
           </v-row>
           <v-row class="mt-5 pb-8" justify="center">
             <v-col cols="3" offset-md="1">
-              <h2>Series</h2>
-              <li v-for="item in character.series.items" :key="item.key">
-                {{ item.name }}
-              </li>
+              <v-expansion-panels>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    <h2>Series</h2>
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <li v-for="item in character.series.items" :key="item.key">
+                      <p>{{ item.name }}</p>
+                    </li>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
             </v-col>
             <v-col cols="3">
-              <h2>Comics</h2>
-              <li v-for="item in character.comics.items" :key="item.key">
-                {{ item.name }}
-              </li>
+              <v-expansion-panels>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    <h2>Comics</h2>
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <li v-for="item in character.comics.items" :key="item.key">
+                      {{ item.name }}
+                    </li>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
             </v-col>
             <v-col cols="3">
-              <h2>Stories</h2>
-              <li v-for="item in character.stories.items" :key="item.key">
-                {{ item.name }}
-              </li>
+              <v-expansion-panels>
+                <v-expansion-panel>
+                  <v-expansion-panel-header>
+                    <h2>Stories</h2>
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <li v-for="item in character.comics.items" :key="item.key">
+                      {{ item.name }}
+                    </li>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
             </v-col>
           </v-row>
         </div>
@@ -72,10 +101,12 @@ export default {
   methods: {
     async getCharacter() {
       const charId = this.$route.params.id;
-      await axios.post(`http://localhost:4000/character`, { charId }).then((res) => {
-        console.log(res);
-        this.character = res.data.data;
-      });
+      await axios
+        .post(`http://localhost:4000/character`, { charId })
+        .then((res) => {
+          console.log(res);
+          this.character = res.data.data;
+        });
     },
   },
 };
