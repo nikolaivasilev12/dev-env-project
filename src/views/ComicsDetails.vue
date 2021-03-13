@@ -12,10 +12,12 @@
           ></v-progress-circular>
         </div>
         <div v-for="comi in comic.results" :key="comi.key">
-          <v-row>
+          <v-row align="center">
             <v-col cols="7">
               <v-img
                 class="mt-2 mb-2"
+                contain
+                max-height="800px"
                 :src="comi.thumbnail.path + '.' + comi.thumbnail.extension"
               ></v-img>
             </v-col>
@@ -24,7 +26,6 @@
               <h3 class="text-center">
                 Price: {{ comi.prices[0].price + "$" }}
               </h3>
-
               <v-col cols="12" >
                 <div
                   class="d-inline-flex"

@@ -12,7 +12,7 @@
           ></v-progress-circular>
         </div>
         <div v-for="character in character.results" :key="character.key">
-          <v-row>
+          <v-row align="center">
             <v-col cols="7">
               <v-img
                 class="mt-2 mb-2"
