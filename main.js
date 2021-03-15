@@ -140,11 +140,28 @@ app.get('/story', async (req, res) => {
 });
 
 //SEARCH
-//Search character
+//Search for character (namestartsWith)
 app.get('/char', async (req, res) => {
     var result = null;
     const searchChar = req.query.searchChar
     await axios.get(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${searchChar}&ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
+        {
+            params: {
+                offset: (req.query.searchPage - 1) * 20
+            }
+        }).then(res => {
+            result = res.data
+        }).catch(err => {
+            console.log(err)
+        })
+    res.json(result);
+});
+
+//Search for comics (titlestartsWith)
+app.get('/searchcomics', async (req, res) => {
+    var result = null;
+    const searchComics = req.query.searchComics
+    await axios.get(`http://gateway.marvel.com/v1/public/comics?titleStartsWith=${searchComics}&ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
         {
             params: {
                 offset: (req.query.searchPage - 1) * 20

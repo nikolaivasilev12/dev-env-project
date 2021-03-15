@@ -14,7 +14,7 @@
             outlined
           ></v-text-field>
           <v-btn name="Search" dark @click="searchCharacter(searchChar)">Search</v-btn>
-          <v-btn dark v-if="searchResults.results" @click="searchResults.results = null, searchChar = null ">Reset</v-btn>
+          <v-btn class="ml-2" dark v-if="searchResults.results" @click="searchResults.results = null, searchChar = null ">Reset</v-btn>
         </v-col>
         <h1 class="text-center titletxt pb-5">Characters</h1>
         <v-row class="d-flex" justify="center">
@@ -166,6 +166,7 @@ export default {
       await axios
         .get(`http://localhost:4000/char?searchChar=${searchChar}&searchPage=${ searchPage }`)
         .then((res) => {
+           this.scrollToTop();
           console.log(res);
           this.searchResults = res.data.data;
         });
