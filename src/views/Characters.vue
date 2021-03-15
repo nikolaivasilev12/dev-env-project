@@ -7,12 +7,13 @@
             prepend-inner-icon="mdi-magnify"
             dark
             dense
+            name="Search"
             label="Search.."
             v-model="searchChar"
             color="red"
             outlined
           ></v-text-field>
-          <v-btn dark @click="searchCharacter(searchChar)">Search</v-btn>
+          <v-btn name="Search" dark @click="searchCharacter(searchChar)">Search</v-btn>
           <v-btn dark v-if="searchResults.results" @click="searchResults.results = null, searchChar = null ">Reset</v-btn>
         </v-col>
         <h1 class="text-center titletxt pb-5">Characters</h1>
