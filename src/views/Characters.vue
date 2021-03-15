@@ -13,6 +13,7 @@
             outlined
           ></v-text-field>
           <v-btn dark @click="searchCharacter(searchChar)">Search</v-btn>
+          <v-btn dark v-if="searchResults.results" @click="searchResults.results = null, searchChar = null ">Reset</v-btn>
         </v-col>
         <h1 class="text-center titletxt pb-5">Characters</h1>
         <v-row class="d-flex" justify="center">
@@ -30,6 +31,7 @@
 
           <!-- Search results -->
           <v-card
+            v-show="searchResults.results"
             :to="{ path: '/character/' + searchChar.id }"
             v-for="searchChar in searchResults.results"
             :key="searchChar.id"
@@ -66,7 +68,7 @@
             <v-row justify="center">
                 <v-col cols="4">
                   <v-pagination
-                    v-if="searchResults.results"
+                    v-show="searchResults.results"
                     class="mt-10 pb-15"
                     v-model="page"
                     :length="Math.ceil(searchResults.total / 20)"
@@ -80,7 +82,7 @@
           <!-- ALL RESULTS -->
         <v-col cols="12"></v-col>
           <v-card
-            v-show="!searchChar"
+            v-show="!searchResults.results"
             :to="{ path: '/character/' + char.id }"
             v-for="char in characters.results"
             :key="char.id"
@@ -117,7 +119,7 @@
     <v-row justify="center">
       <v-col cols="4">
         <v-pagination
-         v-show="!searchChar"
+          v-show="!searchResults.results"
           v-if="characters.results"
           class="mt-10 pb-15"
           v-model="page"
@@ -149,7 +151,7 @@ export default {
     async getChars() {
       const page = this.page;
       await axios
-        .post(`http://localhost:4000/characters`, { page })
+        .get(`http://localhost:4000/characters?page=${page}`)
         .then((res) => {
           this.scrollToTop();
           console.log(res);

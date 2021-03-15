@@ -15,12 +15,12 @@ const ts = new Date().getTime()
 
 //CHARACTERS
 /* get all characters */
-app.post('/characters', async (req, res) => {
+app.get('/characters', async (req, res) => {
     var result = null;
     await axios.get(`http://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
         {
             params: {
-                offset: req.body.page * 20
+                offset: (req.query.page - 1) * 20
             }
         }).then(res => {
             result = res.data
@@ -52,7 +52,7 @@ app.post('/comics', async (req, res) => {
     await axios.get(`http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
         {
             params: {
-                offset: req.body.page * 20
+                offset: (req.body.page -1) * 20
             }
         }).then(res => {
             result = res.data
@@ -84,7 +84,7 @@ app.post('/series', async (req, res) => {
     await axios.get(`http://gateway.marvel.com/v1/public/series?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
         {
             params: {
-                offset: req.body.page * 20
+                offset: (req.body.page -1) * 20
             }
         }).then(res => {
             result = res.data
@@ -116,7 +116,7 @@ app.post('/stories', async (req, res) => {
     await axios.get(`http://gateway.marvel.com/v1/public/stories?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
         {
             params: {
-                offset: req.body.page * 20
+                offset: (req.body.page -1) * 20
             }
         }).then(res => {
             result = res.data
@@ -147,7 +147,7 @@ app.post('/char', async (req, res) => {
     await axios.get(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${searchChar}&ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
     {
         params: {
-            offset: req.body.page * 20
+            offset: (req.body.page -1) * 20
         }
     }).then(res => {
             result = res.data
