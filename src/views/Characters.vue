@@ -70,7 +70,7 @@
                   <v-pagination
                     v-show="searchResults.results"
                     class="mt-10 pb-15"
-                    v-model="page"
+                    v-model="searchPage"
                     :length="Math.ceil(searchResults.total / 20)"
                     @input="searchCharacter"
                     @next="searchCharacter"
@@ -143,6 +143,7 @@ export default {
     characters: [],
     searchResults: [],
     page: 1,
+    searchPage: 1,
   }),
   mounted() {
     this.getChars();
@@ -160,9 +161,9 @@ export default {
     },
     async searchCharacter() {
       const searchChar = this.searchChar;
-      const page = this.page;
+      const searchPage = this.searchPage;
       await axios
-        .post(`http://localhost:4000/char`, { searchChar }, { page })
+        .post(`http://localhost:4000/char`, { searchChar }, { searchPage })
         .then((res) => {
           console.log(res);
           this.searchResults = res.data.data;

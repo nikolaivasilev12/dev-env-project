@@ -147,7 +147,7 @@ app.post('/char', async (req, res) => {
     await axios.get(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${searchChar}&ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
     {
         params: {
-            offset: (req.body.page -1) * 20
+            offset: (req.body.searchPage -1) * 20
         }
     }).then(res => {
             result = res.data
