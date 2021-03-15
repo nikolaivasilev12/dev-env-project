@@ -111,7 +111,7 @@ export default {
     async getComic() {
       const comicsId = this.$route.params.id;
       await axios
-        .post(`http://localhost:4000/comic`, { comicsId })
+        .get(`http://localhost:4000/comic?comicsId=${ comicsId }`)
         .then((res) => {
           console.log(res);
           this.comic = res.data.data;

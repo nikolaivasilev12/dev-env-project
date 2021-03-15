@@ -89,7 +89,7 @@ export default {
     async getStories() {
       const page = this.page;
       await axios
-        .post(`http://localhost:4000/stories`, { page })
+        .get(`http://localhost:4000/stories?page=${page}`)
         .then((res) => {
           this.scrollToTop();
           console.log(res);

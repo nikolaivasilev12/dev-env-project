@@ -125,7 +125,7 @@ export default {
     async getSerie() {
       const SerieId = this.$route.params.id;
       await axios
-        .post(`http://localhost:4000/serie`, { SerieId })
+        .get(`http://localhost:4000/serie?SerieId=${SerieId}`)
         .then((res) => {
           console.log(res);
           this.serie = res.data.data;

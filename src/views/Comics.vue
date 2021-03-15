@@ -90,7 +90,8 @@ export default {
   methods: {
     async getComics() {
       const page = this.page;
-      await axios.post(`http://localhost:4000/comics`, { page }).then((res) => {
+      await axios.get(`http://localhost:4000/comics?page=${page}`)
+      .then((res) => {
         this.scrollToTop();
         console.log(res);
         this.comics = res.data.data;

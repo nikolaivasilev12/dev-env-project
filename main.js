@@ -31,9 +31,9 @@ app.get('/characters', async (req, res) => {
 });
 
 /* Get Single Character */
-app.post('/character', async (req, res) => {
+app.get('/character', async (req, res) => {
     let result = null;
-    const charId = req.body.charId
+    const charId = req.query.charId
 
     await axios.get(`http://gateway.marvel.com/v1/public/characters/${charId}?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
     ).then(res => {
@@ -47,12 +47,12 @@ app.post('/character', async (req, res) => {
 
 //COMICS
 //GET ALL Comics
-app.post('/comics', async (req, res) => {
+app.get('/comics', async (req, res) => {
     var result = null;
     await axios.get(`http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
         {
             params: {
-                offset: (req.body.page -1) * 20
+                offset: (req.query.page - 1) * 20
             }
         }).then(res => {
             result = res.data
@@ -63,9 +63,9 @@ app.post('/comics', async (req, res) => {
 });
 
 /* Get Single Comics details */
-app.post('/comic', async (req, res) => {
+app.get('/comic', async (req, res) => {
     let result = null;
-    const comicsId = req.body.comicsId
+    const comicsId = req.query.comicsId
 
     await axios.get(`http://gateway.marvel.com/v1/public/comics/${comicsId}?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
     ).then(res => {
@@ -79,12 +79,12 @@ app.post('/comic', async (req, res) => {
 
 //SERIES
 //GET ALL Series
-app.post('/series', async (req, res) => {
+app.get('/series', async (req, res) => {
     var result = null;
     await axios.get(`http://gateway.marvel.com/v1/public/series?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
         {
             params: {
-                offset: (req.body.page -1) * 20
+                offset: (req.query.page - 1) * 20
             }
         }).then(res => {
             result = res.data
@@ -95,9 +95,9 @@ app.post('/series', async (req, res) => {
 });
 
 /* Get Single Serie details */
-app.post('/serie', async (req, res) => {
+app.get('/serie', async (req, res) => {
     let result = null;
-    const SerieId = req.body.SerieId
+    const SerieId = req.query.SerieId
 
     await axios.get(`http://gateway.marvel.com/v1/public/series/${SerieId}?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
     ).then(res => {
@@ -111,12 +111,12 @@ app.post('/serie', async (req, res) => {
 
 //SERIES
 //GET ALL Stories
-app.post('/stories', async (req, res) => {
+app.get('/stories', async (req, res) => {
     var result = null;
     await axios.get(`http://gateway.marvel.com/v1/public/stories?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
         {
             params: {
-                offset: (req.body.page -1) * 20
+                offset: (req.query.page - 1) * 20
             }
         }).then(res => {
             result = res.data
@@ -126,9 +126,9 @@ app.post('/stories', async (req, res) => {
     res.json(result);
 });
 /* Get Single Story details */
-app.post('/story', async (req, res) => {
+app.get('/story', async (req, res) => {
     let result = null;
-    const StoryId = req.body.StoryId
+    const StoryId = req.query.StoryId
 
     await axios.get(`http://gateway.marvel.com/v1/public/stories/${StoryId}?ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
     ).then(res => {
@@ -141,15 +141,15 @@ app.post('/story', async (req, res) => {
 
 //SEARCH
 //Search character
-app.post('/char', async (req, res) => {
+app.get('/char', async (req, res) => {
     var result = null;
-    const searchChar = req.body.searchChar
+    const searchChar = req.query.searchChar
     await axios.get(`http://gateway.marvel.com/v1/public/characters?nameStartsWith=${searchChar}&ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
-    {
-        params: {
-            offset: (req.body.searchPage -1) * 20
-        }
-    }).then(res => {
+        {
+            params: {
+                offset: (req.query.searchPage - 1) * 20
+            }
+        }).then(res => {
             result = res.data
         }).catch(err => {
             console.log(err)

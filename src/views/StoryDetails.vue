@@ -95,7 +95,7 @@ export default {
     async getStory() {
       const StoryId = this.$route.params.id;
       await axios
-        .post(`http://localhost:4000/story`, { StoryId })
+        .get(`http://localhost:4000/story?StoryId=${ StoryId }`)
         .then((res) => {
           console.log(res);
           this.story = res.data.data;

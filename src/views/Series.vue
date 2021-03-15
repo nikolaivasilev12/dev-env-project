@@ -90,7 +90,7 @@ export default {
   methods: {
     async getSeries() {
       const page = this.page;
-      await axios.post(`http://localhost:4000/series`, { page }).then((res) => {
+      await axios.get(`http://localhost:4000/series?page=${page}`).then((res) => {
         this.scrollToTop();
         console.log(res);
         this.series = res.data.data;

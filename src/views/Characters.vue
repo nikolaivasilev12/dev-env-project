@@ -164,7 +164,7 @@ export default {
       const searchChar = this.searchChar;
       const searchPage = this.searchPage;
       await axios
-        .post(`http://localhost:4000/char`, { searchChar }, { searchPage })
+        .get(`http://localhost:4000/char?searchChar=${searchChar}&searchPage=${ searchPage }`)
         .then((res) => {
           console.log(res);
           this.searchResults = res.data.data;
