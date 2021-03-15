@@ -16,11 +16,11 @@
       </template>
       <template v-slot:extension>
         <v-tabs align-with-title>
-          <v-tab to="/">Home</v-tab>
-          <v-tab to="/characters">Characters</v-tab>
-          <v-tab to="/comics">Comics</v-tab>
-          <v-tab to="/series">Series</v-tab>
-          <v-tab to="/stories">Stories</v-tab>
+          <v-tab id="home" to="/">Home</v-tab>
+          <v-tab id="characters" to="/characters">Characters</v-tab>
+          <v-tab id="comics" to="/comics">Comics</v-tab>
+          <v-tab id="series" to="/series">Series</v-tab>
+          <v-tab id="stories" to="/stories">Stories</v-tab>
         </v-tabs>
       </template>
     </v-app-bar>

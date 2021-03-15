@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="3">
           <div class="image">
-            <router-link to="/characters">
+            <router-link id="charactersImg" to="/characters">
               <v-img
                 class="v-img"
                 height="625px"
