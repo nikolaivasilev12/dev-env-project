@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>left todo for this project</h1>
-    //Implement Search to Comics/Series/Stories,
-    //Search Pagination - not working,
+    //Implement Search to /Series/Stories,
+
 
     //Automated Unit/End2End TESTING,
     //Setup CI/CD - also deploy to web.

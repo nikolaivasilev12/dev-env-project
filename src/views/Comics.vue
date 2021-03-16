@@ -13,8 +13,16 @@
             color="red"
             outlined
           ></v-text-field>
-          <v-btn name="Search" dark @click="searchComic(searchComics)">Search</v-btn>
-          <v-btn class="ml-2" dark @click="searchResults.results = null, searchComics = null ">Reset</v-btn>
+          <v-btn name="Search" dark @click="searchComic(searchComics)"
+            >Search</v-btn
+          >
+          <v-btn
+            class="ml-2"
+            dark
+            v-if="searchResults.results"
+            @click="(searchResults.results = null), (searchComics = null)"
+            >Reset</v-btn
+          >
         </v-col>
         <h1 class="text-center titletxt pb-5">Comics</h1>
         <v-row class="d-flex" justify="center">
@@ -29,8 +37,8 @@
             ></v-progress-circular>
           </div>
 
-<!-- Search Results -->
-            <v-card
+          <!-- Search Results -->
+          <v-card
             v-show="searchResults.results"
             :to="{ path: '/comic/' + searchComics.id }"
             v-for="searchComics in searchResults.results"
@@ -45,7 +53,9 @@
           >
             <v-img
               :src="
-                searchComics.thumbnail.path + '.' + searchComics.thumbnail.extension
+                searchComics.thumbnail.path +
+                '.' +
+                searchComics.thumbnail.extension
               "
               max-height="270px"
               min-height="270px"
@@ -66,23 +76,22 @@
           <v-col cols="12"></v-col>
           <v-col col="12">
             <v-row justify="center">
-                <v-col cols="4">
-                  <v-pagination
-                    v-show="searchResults.results"
-                    class="mt-10 pb-15"
-                    v-model="searchPage"
-                    :length="Math.ceil(searchResults.total / 20)"
-                    @input="searchComic"
-                    @next="searchComic"
-                    @previous="searchComic"
-                  ></v-pagination>
-                </v-col>
-              </v-row>
-      </v-col>
+              <v-col cols="4">
+                <v-pagination
+                  v-show="searchResults.results"
+                  class="mt-10 pb-15"
+                  v-model="searchPage"
+                  :length="Math.ceil(searchResults.total / 20)"
+                  @input="searchComic"
+                  @next="searchComic"
+                  @previous="searchComic"
+                ></v-pagination>
+              </v-col>
+            </v-row>
+          </v-col>
 
-
-
-        <!-- All results -->
+          <!-- All results -->
+            <v-col cols="12"></v-col>
           <v-card
             v-show="!searchResults.results"
             :to="{ path: '/comic/' + comic.id }"
@@ -120,7 +129,7 @@
     <v-row justify="center">
       <v-col cols="4">
         <v-pagination
-         v-show="!searchResults.results"
+          v-show="!searchResults.results"
           v-if="comics.results"
           class="mt-10 pb-15"
           v-model="page"
@@ -152,20 +161,23 @@ export default {
   methods: {
     async getComics() {
       const page = this.page;
-      await axios.get(`http://localhost:4000/comics?page=${page}`)
-      .then((res) => {
-        this.scrollToTop();
-        console.log(res);
-        this.comics = res.data.data;
-      });
+      await axios
+        .get(`http://localhost:4000/comics?page=${page}`)
+        .then((res) => {
+          this.scrollToTop();
+          console.log(res);
+          this.comics = res.data.data;
+        });
     },
     async searchComic() {
       const searchComics = this.searchComics;
       const searchPage = this.searchPage;
       await axios
-        .get(`http://localhost:4000/searchcomics?searchComics=${searchComics}&searchPage=${ searchPage }`)
+        .get(
+          `http://localhost:4000/searchcomics?searchComics=${searchComics}&searchPage=${searchPage}`
+        )
         .then((res) => {
-           this.scrollToTop();
+          this.scrollToTop();
           console.log(res);
           this.searchResults = res.data.data;
         });

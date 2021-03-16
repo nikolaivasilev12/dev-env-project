@@ -13,14 +13,21 @@
             color="red"
             outlined
           ></v-text-field>
-          <v-btn name="Search" dark @click="searchCharacter(searchChar)">Search</v-btn>
-          <v-btn class="ml-2" dark v-if="searchResults.results" @click="searchResults.results = null, searchChar = null ">Reset</v-btn>
+          <v-btn name="Search" dark @click="searchCharacter(searchChar)"
+            >Search</v-btn
+          >
+          <v-btn
+            class="ml-2"
+            dark
+            v-if="searchResults.results"
+            @click="(searchResults.results = null), (searchChar = null)"
+            >Reset</v-btn
+          >
         </v-col>
         <h1 class="text-center titletxt pb-5">Characters</h1>
         <v-row class="d-flex" justify="center">
-          
           <!-- Loader -->
-          
+
           <v-progress-circular
             class="loader"
             v-if="!characters.results"
@@ -67,21 +74,21 @@
           <v-col cols="12"></v-col>
           <v-col col="12">
             <v-row justify="center">
-                <v-col cols="4">
-                  <v-pagination
-                    v-show="searchResults.results"
-                    class="mt-10 pb-15"
-                    v-model="searchPage"
-                    :length="Math.ceil(searchResults.total / 20)"
-                    @input="searchCharacter"
-                    @next="searchCharacter"
-                    @previous="searchCharacter"
-                  ></v-pagination>
-                </v-col>
-              </v-row>
-      </v-col>
+              <v-col cols="4">
+                <v-pagination
+                  v-show="searchResults.results"
+                  class="mt-10 pb-15"
+                  v-model="searchPage"
+                  :length="Math.ceil(searchResults.total / 20)"
+                  @input="searchCharacter"
+                  @next="searchCharacter"
+                  @previous="searchCharacter"
+                ></v-pagination>
+              </v-col>
+            </v-row>
+          </v-col>
           <!-- ALL RESULTS -->
-        <v-col cols="12"></v-col>
+          <v-col cols="12"></v-col>
           <v-card
             v-show="!searchResults.results"
             :to="{ path: '/character/' + char.id }"
@@ -164,9 +171,11 @@ export default {
       const searchChar = this.searchChar;
       const searchPage = this.searchPage;
       await axios
-        .get(`http://localhost:4000/char?searchChar=${searchChar}&searchPage=${ searchPage }`)
+        .get(
+          `http://localhost:4000/char?searchChar=${searchChar}&searchPage=${searchPage}`
+        )
         .then((res) => {
-           this.scrollToTop();
+          this.scrollToTop();
           console.log(res);
           this.searchResults = res.data.data;
         });

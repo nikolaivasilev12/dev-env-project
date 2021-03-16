@@ -175,6 +175,24 @@ app.get('/searchcomics', async (req, res) => {
 });
 
 
+//Search for comics (titlestartsWith)
+app.get('/searchseries', async (req, res) => {
+    var result = null;
+    const searchSeries = req.query.searchSeries
+    await axios.get(`http://gateway.marvel.com/v1/public/series?titleStartsWith=${searchSeries}&ts=${ts}&apikey=${publicKey}&hash=${md5(ts + privateKey + publicKey)}`,
+        {
+            params: {
+                offset: (req.query.searchPage - 1) * 20
+            }
+        }).then(res => {
+            result = res.data
+        }).catch(err => {
+            console.log(err)
+        })
+    res.json(result);
+});
+
+
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
