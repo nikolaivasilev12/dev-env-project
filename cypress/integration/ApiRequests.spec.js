@@ -1,4 +1,4 @@
-describe('API fetch Request', ()=> {
+describe('API fetch Requests', ()=> {
     it('GET Characters', () => {
 
         cy.intercept({
