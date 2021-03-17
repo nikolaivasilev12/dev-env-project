@@ -34,7 +34,7 @@ describe('Search for Character', () => {
     })
 
 
-/*     it('Search Results fetched', () => {
+    it('Search Results fetched', () => {
         cy.intercept({
             method: 'GET',
             url: 'http://localhost:4000/char',
@@ -42,9 +42,7 @@ describe('Search for Character', () => {
          cy.wait('@apiCheck').then((interception) => {
             assert.isNotNull(interception.response.body, 'API call has data')
          })
-
-
-    }) */
+    })
 
     it('Reset Search', () => {
 
