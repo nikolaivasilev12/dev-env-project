@@ -1,5 +1,7 @@
 # dev-env-project
+to run cypress -  ./node_modules/.bin/cypress open
 
+to run api - npm run away
 ## Project setup
 ```
 npm install
