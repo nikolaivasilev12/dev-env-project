@@ -28,9 +28,6 @@ describe('Search Character', () => {
       //Click Search button
       cy.get('button').contains('Search').click()
 
-      //Click Search button
-      cy.get('button').contains('Search').click()
-
       //assert correct URL
       cy.url().should('contain', 'http://localhost:8080/characters')
    })

@@ -13,11 +13,12 @@
             color="red"
             outlined
           ></v-text-field>
-          <v-btn name="Search" dark @click="searchCharacter(searchChar)"
+          <v-btn name="Search" id="Search" dark @click="searchCharacter(searchChar)"
             >Search</v-btn
           >
           <v-btn
             class="ml-2"
+            id="SearchReset"
             dark
             v-if="searchResults.results"
             @click="(searchResults.results = null), (searchChar = null)"
