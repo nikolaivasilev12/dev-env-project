@@ -1,4 +1,4 @@
-describe('Search', () => {
+describe('Search Character', () => {
    it('Visit characters', () => {
 
       //visit url
