@@ -9,10 +9,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, "./dist")))
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, './dist', 'index.html'))
-})
+app.use(express.static(__dirname + '/dist/'));
+app.get(/.*/, function(req, res) {
+  res.sendfile(__dirname + '/dist/index.html');
+});
 
 
 
