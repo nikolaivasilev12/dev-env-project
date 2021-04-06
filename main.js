@@ -6,6 +6,11 @@ let md5 = require('md5');
 const dotenv = require('dotenv');
 dotenv.config();
 
+const serveStatic = require("serve-static")
+const path = require('path');
+app.use(serveStatic(path.join(__dirname, 'dist')));
+
+
 const app = express();
 
 app.use(cors());
