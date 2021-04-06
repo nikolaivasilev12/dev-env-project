@@ -5,16 +5,16 @@ const axios = require('axios');
 let md5 = require('md5');
 const dotenv = require('dotenv');
 dotenv.config();
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "./dist")))
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, './dist', 'index.html'))
 })
 
-const app = express();
 
-app.use(cors());
-app.use(bodyParser.json());
 
 
 const ts = new Date().getTime()
