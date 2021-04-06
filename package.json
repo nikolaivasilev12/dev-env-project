@@ -5,7 +5,7 @@
   "description": "A cool book site",
   "author": "",
   "scripts": {
-    "postinstall": "npm run build",
+    
     "start": "node main.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
