@@ -162,7 +162,7 @@ export default {
   methods: {
     async getSeries() {
       const page = this.page;
-      await axios.get(`http://localhost:4000/series?page=${page}`).then((res) => {
+      await axios.get(`${process.env.BASE_URL}/api/series?page=${page}`).then((res) => {
         this.scrollToTop();
         this.series = res.data.data;
       });
@@ -172,7 +172,7 @@ export default {
       const searchPage = this.searchPage;
       await axios
         .get(
-          `http://localhost:4000/searchseries?searchSeries=${searchSeries}&searchPage=${searchPage}`
+          `${process.env.BASE_URL}/api/searchseries?searchSeries=${searchSeries}&searchPage=${searchPage}`
         )
         .then((res) => {
           this.scrollToTop();

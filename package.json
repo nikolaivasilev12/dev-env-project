@@ -9,7 +9,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "away": "nodemon main.js"
+    "away": "nodemon main.js",
+    "run": "npm run start && npm run away"
   },
   "main": "main.js",
   "dependencies": {

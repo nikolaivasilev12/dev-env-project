@@ -77,7 +77,7 @@ export default {
     async getStories() {
       const page = this.page;
       await axios
-        .get(`http://localhost:4000/stories?page=${page}`)
+        .get(`${process.env.BASE_URL}/api/stories?page=${page}`)
         .then((res) => {
           this.scrollToTop();
           console.log(res);

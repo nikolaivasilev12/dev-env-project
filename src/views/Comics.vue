@@ -162,7 +162,7 @@ export default {
     async getComics() {
       const page = this.page;
       await axios
-        .get(`http://localhost:4000/comics?page=${page}`)
+        .get(`${process.env.BASE_URL}/api/comics?page=${page}`)
         .then((res) => {
           this.scrollToTop();
           console.log(res);
@@ -174,7 +174,7 @@ export default {
       const searchPage = this.searchPage;
       await axios
         .get(
-          `http://localhost:4000/searchcomics?searchComics=${searchComics}&searchPage=${searchPage}`
+          `${process.env.BASE_URL}/api/searchcomics?searchComics=${searchComics}&searchPage=${searchPage}`
         )
         .then((res) => {
           this.scrollToTop();

@@ -161,7 +161,7 @@ export default {
     async getChars() {
       const page = this.page;
       await axios
-        .get(`http://localhost:4000/characters?page=${page}`)
+        .get(`${process.env.BASE_URL}/api/characters?page=${page}`)
         .then((res) => {
           this.scrollToTop();
           console.log(res);
@@ -173,7 +173,7 @@ export default {
       const searchPage = this.searchPage;
       await axios
         .get(
-          `http://localhost:4000/char?searchChar=${searchChar}&searchPage=${searchPage}`
+          `${process.env.BASE_URL}/api/char?searchChar=${searchChar}&searchPage=${searchPage}`
         )
         .then((res) => {
           this.scrollToTop();

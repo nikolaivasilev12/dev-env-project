@@ -114,7 +114,7 @@ export default {
     async getCharacter() {
       const charId = this.$route.params.id;
       await axios
-        .get(`http://localhost:4000/character?charId=${charId}`)
+        .get(`${process.env.BASE_URL}/api/character?charId=${charId}`)
         .then((res) => {
           console.log(res);
           this.character = res.data.data;
